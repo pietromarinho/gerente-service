@@ -1,9 +1,14 @@
 package com.gerente.rest.service;
 
 import com.gerente.exception.BOException;
+import com.gerente.model.dto.FuncaoDTO;
 import com.gerente.model.dto.FuncionarioDTO;
+import com.gerente.model.entity.Funcao;
 import com.gerente.model.entity.Funcionario;
 import com.gerente.repository.FuncionarioRepository;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +17,11 @@ import java.util.Collection;
 
 @Service
 public class FuncionarioService {
+
+    @Getter(AccessLevel.PRIVATE)
+    @Setter(AccessLevel.PRIVATE)
+    private FuncaoService funcaoService;
+
     @Autowired
     private FuncionarioRepository repository;
 

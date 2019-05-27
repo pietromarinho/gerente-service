@@ -1,7 +1,7 @@
 package com.gerente.model.entity;
 
 
-import com.gerente.model.dto.FuncionarioDTO;
+import com.gerente.model.dto.FuncaoDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,22 +13,20 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name = "funcionario")
-public class Funcionario extends BaseEntity implements Serializable {
+@Table(name = "funcao")
+public class Funcao extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(nullable = false)
     private String name;
-    private Funcao funcao;
 
-    public Funcionario() {
+    public Funcao() {
     }
 
-    public Funcionario(FuncionarioDTO dto) {
+    public Funcao(FuncaoDTO dto) {
         if (dto.getId() != null) {
             super.setId(dto.getId());
         }
         setName(dto.getName());
-        setFuncao(new Funcao(dto.getFuncao()));
     }
 }

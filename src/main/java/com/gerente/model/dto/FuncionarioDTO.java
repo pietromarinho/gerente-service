@@ -14,6 +14,8 @@ public class FuncionarioDTO {
 
     @NotNull(message = "Nome não pode estar vazio.")
     private String name;
+    @NotNull(message = "Matrícula não pode estar vazio.")
+    private String matricula;
     @NotNull(message = "função não pode estar vazio.")
     private FuncaoDTO funcao;
 
@@ -23,6 +25,7 @@ public class FuncionarioDTO {
     public FuncionarioDTO(Funcionario model) {
         this.id = model.getId();
         this.name = model.getName();
+        this.matricula = model.getMatricula();
         this.funcao = new FuncaoDTO(model.getFuncao());
     }
 }

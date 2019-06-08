@@ -5,9 +5,7 @@ import com.gerente.model.dto.FuncionarioDTO;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Getter
@@ -19,7 +17,12 @@ public class Funcionario extends BaseEntity implements Serializable {
 
     @Column(nullable = false)
     private String name;
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_funcao"))
     private Funcao funcao;
+    @Column(nullable = false)
+    @JoinColumn(unique = true)
+    private String matricula;
 
     public Funcionario() {
     }
@@ -29,6 +32,7 @@ public class Funcionario extends BaseEntity implements Serializable {
             super.setId(dto.getId());
         }
         setName(dto.getName());
+        setMatricula((dto.getMatricula()));
         setFuncao(new Funcao(dto.getFuncao()));
     }
 }

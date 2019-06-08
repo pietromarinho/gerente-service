@@ -5,6 +5,7 @@ import com.gerente.model.dto.FuncaoDTO;
 import com.gerente.model.dto.FuncionarioDTO;
 import com.gerente.model.entity.Funcao;
 import com.gerente.model.entity.Funcionario;
+import com.gerente.repository.FuncaoRepository;
 import com.gerente.repository.FuncionarioRepository;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -18,15 +19,17 @@ import java.util.Collection;
 @Service
 public class FuncionarioService {
 
-    @Getter(AccessLevel.PRIVATE)
-    @Setter(AccessLevel.PRIVATE)
-    private FuncaoService funcaoService;
+    @Autowired
+    private FuncaoRepository funcaoRepository;
 
     @Autowired
     private FuncionarioRepository repository;
 
     public FuncionarioDTO save(FuncionarioDTO dto) {
         Funcionario model = new Funcionario(dto);
+        Funcao funcao= funcaoRepository.getOne(model.getFuncao().getId());
+
+        model.setFuncao(funcao);
 
         return new FuncionarioDTO(this.repository.save(model));
     }

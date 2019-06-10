@@ -23,5 +23,6 @@ public class AmbulanciaDTO {
         this.id = model.getId();
         this.name = model.getName();
         this.ambulanciaType = new AmbulanciaTypeDTO(model.getAmbulanciaType());
+
     }
 }

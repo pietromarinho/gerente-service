@@ -7,8 +7,11 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -19,6 +22,8 @@ public class AmbulanciaType extends BaseEntity implements Serializable {
 
     @Column(nullable = false)
     private String name;
+    @ManyToMany()
+    private List<Funcao> funcoes;
 
     public AmbulanciaType() {
     }
@@ -28,5 +33,6 @@ public class AmbulanciaType extends BaseEntity implements Serializable {
             super.setId(dto.getId());
         }
         setName(dto.getName());
+        setFuncoes(dto.getFuncoes().stream().map(funcao -> new Funcao(funcao)).collect(Collectors.toList()));
     }
 }
